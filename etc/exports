@@ -1,0 +1,6 @@
+# Use `exportfs -arv` to reload.
+/data/download	192.168.10.0/24(rw,sync)
+/data/media	192.168.10.0/24(rw,sync)
+/data/music	192.168.10.0/24(rw,sync)
+/data/movie	192.168.10.0/24(rw,sync)
+/data/tv	192.168.10.0/24(rw,sync)
