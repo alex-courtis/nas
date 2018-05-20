@@ -2,7 +2,8 @@
 # See fstab(5) for details.
 
 # <file system> <dir> <type> <options> <dump> <pass>
-# /dev/sda3 LABEL=archroot
+
+# LABEL=archroot
 UUID=9522df6d-3c58-4cb4-b5cd-d112d0634e43	/         	btrfs     	rw,relatime,ssd,space_cache,subvol=/root	0 1
 
 # LABEL=archboot
