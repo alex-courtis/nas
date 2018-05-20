@@ -2,30 +2,17 @@
 # See fstab(5) for details.
 
 # <file system> <dir> <type> <options> <dump> <pass>
-
-# LABEL=archroot
 UUID=9522df6d-3c58-4cb4-b5cd-d112d0634e43	/         	btrfs     	rw,relatime,ssd,space_cache,subvol=/root	0 1
-
-# LABEL=archboot
-UUID=4FE4-E438      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
-
-# LABEL=archroot
 UUID=9522df6d-3c58-4cb4-b5cd-d112d0634e43	/opt/plex 	btrfs     	rw,relatime,ssd,space_cache,subvol=/plex	0 2
-
-# LABEL=archroot
 UUID=9522df6d-3c58-4cb4-b5cd-d112d0634e43	/opt/sabnzbd	btrfs     	rw,relatime,ssd,space_cache,subvol=/sabnzbd	0 2
-
-# LABEL=archroot
 UUID=9522df6d-3c58-4cb4-b5cd-d112d0634e43	/opt/sickrage	btrfs     	rw,relatime,ssd,space_cache,subvol=/sickrage	0 2
-
-# LABEL=archroot
 UUID=9522df6d-3c58-4cb4-b5cd-d112d0634e43	/data/download	btrfs     	rw,relatime,ssd,space_cache,subvol=/download	0 2
 
-# LABEL=archswap
+UUID=4FE4-E438                                  /boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+
 UUID=0ce82a2c-7c30-4b76-b0f5-e9d4b292dc8c	none      	swap      	defaults,pri=-2	0 0
 
-# raid5 data
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/data/media	btrfs     	rw,relatime,space_cache,subvol=/media	0 2
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/data/movie	btrfs     	rw,relatime,space_cache,subvol=/movie	0 2
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/data/tv  	btrfs     	rw,relatime,space_cache,subvol=/tv	0 2
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/data/music	btrfs     	rw,relatime,space_cache,subvol=/music	0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/data/tv  	btrfs     	rw,relatime,space_cache,subvol=/tv	0 2
