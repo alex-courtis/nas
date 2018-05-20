@@ -7,12 +7,12 @@ docker pull linuxserver/sabnzbd
 
 docker create \
     --name=sabnzbd \
+    --net=host \
     -v /opt/sabnzbd/config:/config \
     -v /opt/sabnzbd/incomplete-downloads:/incomplete-downloads \
     -v /data/download:/download \
     -e PGID=$(id -u sabnzbd) -e PUID=$(id -g sabnzbd) \
     -e TZ=Australia/Sydney \
-    -p 8080:8080 -p 9090:9090 \
     --restart unless-stopped \
     linuxserver/sabnzbd
 

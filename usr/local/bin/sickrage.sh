@@ -7,12 +7,12 @@ docker pull linuxserver/sickrage
 
 docker create \
     --name=sickrage \
+    --net=host \
     -v /opt/sickrage/config:/config \
     -v /data/download:/downloads \
     -v /data/tv:/tv \
     -e PGID=$(id -u sickrage) -e PUID=$(id -g sickrage) \
     -e TZ=Australia/Sydney \
-    -p 8081:8081 \
     --restart unless-stopped \
     linuxserver/sickrage
 
