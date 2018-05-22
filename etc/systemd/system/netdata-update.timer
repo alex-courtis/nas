@@ -1,0 +1,6 @@
+[Unit]
+Description=netdata update timer
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=86400

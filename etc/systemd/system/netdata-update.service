@@ -1,0 +1,6 @@
+[Unit]
+Description=netdata update service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/src/netdata/netdata-updater.sh
