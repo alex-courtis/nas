@@ -1,5 +1,5 @@
 [Unit]
-Description=netdata update service
+Description=netdata update
 
 [Service]
 Type=oneshot
