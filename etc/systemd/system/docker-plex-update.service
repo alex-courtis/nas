@@ -1,6 +1,6 @@
 [Unit]
 Description=plex docker update
-Wants=network-online.target
+Wants=docker.target
 
 [Service]
 Type=oneshot
