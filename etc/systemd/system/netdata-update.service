@@ -1,5 +1,6 @@
 [Unit]
 Description=netdata update
+Wants=network-online.target
 
 [Service]
 Type=oneshot
