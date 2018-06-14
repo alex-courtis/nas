@@ -1,0 +1,7 @@
+[Unit]
+Description=sabnzbd docker update
+Wants=docker.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/docker-sabnzbd.sh

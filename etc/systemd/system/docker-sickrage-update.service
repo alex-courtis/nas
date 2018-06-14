@@ -1,0 +1,7 @@
+[Unit]
+Description=sickrage docker update
+Wants=docker.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/docker-sickrage.sh
