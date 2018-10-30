@@ -15,8 +15,8 @@ if [ $? -eq 0 ]; then
         --name=sickrage \
         --net=host \
         -v /opt/sickrage/config:/config \
-        -v /data/download:/downloads \
-        -v /data/tv:/tv \
+        -v /download:/downloads \
+        -v /tv:/tv \
         -e PGID=$(id -u sickrage) -e PUID=$(id -g sickrage) \
         -e TZ=Australia/Sydney \
         --restart unless-stopped \

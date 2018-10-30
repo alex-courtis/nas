@@ -21,9 +21,9 @@ if [ $? -eq 0 ]; then
         -e TZ=Australia/Sydney \
         -v /opt/plex/config:/config \
         -v /opt/plex/transcode:/transcode \
-        -v /data/tv:/data/tv \
-        -v /data/movie:/data/movie \
-        -v /data/music:/data/music \
+        -v /tv:/data/tv \
+        -v /movie:/data/movie \
+        -v /music:/data/music \
         --restart unless-stopped \
         linuxserver/plex
     
