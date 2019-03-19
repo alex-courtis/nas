@@ -12,8 +12,9 @@ UUID=4FE4-E438                                  /boot     	vfat      	rw,relatim
 
 UUID=0ce82a2c-7c30-4b76-b0f5-e9d4b292dc8c	none      	swap      	defaults,pri=0	0 0
 
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/media		btrfs     	rw,relatime,space_cache,subvol=/media	0 2
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/movie		btrfs     	rw,relatime,space_cache,subvol=/movie	0 2
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/music		btrfs     	rw,relatime,space_cache,subvol=/music	0 2
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/scratch  	btrfs     	rw,relatime,space_cache,subvol=/scratch	0 2
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/tv		btrfs     	rw,relatime,space_cache,subvol=/tv	0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/media		btrfs     	rw,relatime,space_cache,subvol=/media		0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/movie		btrfs     	rw,relatime,space_cache,subvol=/movie		0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/music		btrfs     	rw,relatime,space_cache,subvol=/music		0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/music.arch	btrfs     	rw,relatime,space_cache,subvol=/music.arch	0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/scratch  	btrfs     	rw,relatime,space_cache,subvol=/scratch		0 2
+UUID=2a27878d-053e-4973-a7ea-807541d125d8	/tv		btrfs     	rw,relatime,space_cache,subvol=/tv		0 2
