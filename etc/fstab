@@ -16,6 +16,5 @@ UUID=2a27878d-053e-4973-a7ea-807541d125d8	/media		btrfs     	rw,relatime,space_c
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/movie		btrfs     	rw,relatime,space_cache,subvol=/movie		0 2
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/music		btrfs     	rw,relatime,space_cache,subvol=/music		0 2
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/music.arch	btrfs     	rw,relatime,space_cache,subvol=/music.arch	0 2
-UUID=2a27878d-053e-4973-a7ea-807541d125d8	/music.new	btrfs     	rw,relatime,space_cache,subvol=/music.new	0 2
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/scratch  	btrfs     	rw,relatime,space_cache,subvol=/scratch		0 2
 UUID=2a27878d-053e-4973-a7ea-807541d125d8	/tv		btrfs     	rw,relatime,space_cache,subvol=/tv		0 2

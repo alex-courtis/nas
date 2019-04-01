@@ -3,7 +3,6 @@
 /media		192.168.10.0/24(rw,sync)
 /music		192.168.10.0/24(rw,sync)
 /music.arch	192.168.10.0/24(rw,sync)
-/music.new	192.168.10.0/24(rw,sync)
 /movie		192.168.10.0/24(rw,sync)
 /scratch	192.168.10.0/24(rw,sync)
 /tv		192.168.10.0/24(rw,sync)
