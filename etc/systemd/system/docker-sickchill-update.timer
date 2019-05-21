@@ -1,5 +1,5 @@
 [Unit]
-Description=daily sickrage docker update
+Description=daily sickchill docker update
 
 [Timer]
 OnCalendar=*-*-* 11:00:00
