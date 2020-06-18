@@ -4,4 +4,5 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/src/netdata/netdata-updater.sh
+ExecStart=/usr/libexec/netdata/netdata-updater.sh
+
