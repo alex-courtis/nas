@@ -13,7 +13,7 @@ if [ $? -eq 0 ]; then
     # create new
     docker create \
         --name=sickchill \
-        --net=host \
+        -p 8081:8081 \
         -v /opt/sickchill/config:/config \
         -v /download:/downloads \
         -v /tv:/tv \

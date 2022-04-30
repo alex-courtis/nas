@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
     # create new
     docker create \
         --name=plex \
-        --net=host \
+        -p 32400:32400 \
         -e VERSION=public \
         -e PUID=$(id -u plex) -e PGID=$(id -g plex) \
         -e TZ=Australia/Sydney \
