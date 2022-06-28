@@ -1,0 +1,27 @@
+# cycle seconds
+set daemon 60
+
+set log syslog
+
+# alert on fail/ok reminding daily on fail
+set alert alex@courtis.org reminder 1440
+
+set mailserver mail.iinet.net.au port 587
+        username "xxx" password "yyy"
+using tlsv12
+
+set mail-format {
+  from:    lord <alex_courtis@iinet.net.au>
+  subject: $DESCRIPTION
+}
+
+check system lord
+    if cpu usage > 80% for 2 cycles then alert
+
+check filesystem root with path /
+	if space usage > 80% then alert
+
+# covers all the raid volumes
+check filesystem raid with path /download
+	if space usage > 80% then alert
+
