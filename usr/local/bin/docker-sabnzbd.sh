@@ -13,7 +13,7 @@ if [ $? -eq 0 ]; then
     # create new
     docker create \
         --name=sabnzbd \
-        -p 8080:8080 \
+		--net=host \
         -v /opt/sabnzbd/config:/config \
         -v /opt/sabnzbd/incomplete-downloads:/incomplete-downloads \
         -v /download:/download \
