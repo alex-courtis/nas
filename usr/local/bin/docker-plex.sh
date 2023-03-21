@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
     # create new
     docker create \
         --name=plex \
-		--net=host \
+        --net=host \
         -e VERSION=docker \
         -e PUID=$(id -u plex) -e PGID=$(id -g plex) \
         -e TZ=Australia/Sydney \
@@ -26,7 +26,7 @@ if [ $? -eq 0 ]; then
         -v /music:/data/music \
         --restart unless-stopped \
         linuxserver/plex
-    
+
     # start new
     docker start plex
 
