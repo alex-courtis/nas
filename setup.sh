@@ -14,7 +14,7 @@ blockdev --getpbsz /dev/sda
 # name pool
 zpool create \
 	-f \
-	-m /srv \
+	-m /srv/nfs \
 	-o ashift=12 \
 	pool \
 	raidz \
@@ -51,9 +51,9 @@ systemctl start zfs-import-cache.service
 # data sets
 #
 
-# zfs create pool/archive
+zfs create pool/archive
 zfs create pool/download
-# zfs create pool/media
+zfs create pool/misc
 zfs create pool/movie
 zfs create pool/music
 zfs create pool/save
@@ -62,3 +62,28 @@ zfs create pool/tv
 
 zfs set quota=1T pool/download
 zfs set quota=512G pool/tmp
+
+#
+# enable nfs
+#
+systemctl enable nfsv4-server.service
+systemctl enable zfs-share.service
+systemctl start nfsv4-server.service
+systemctl start zfs-share.service
+
+# explicit nfs for each, can't inherit fsid=root
+zfs set sharenfs="rw=@192.168.1.0/24,fsid=root" pool
+zfs set sharenfs="rw=@192.168.1.0/24" pool/archive
+zfs set sharenfs="rw=@192.168.1.0/24" pool/download
+zfs set sharenfs="rw=@192.168.1.0/24" pool/misc
+zfs set sharenfs="rw=@192.168.1.0/24" pool/movie
+zfs set sharenfs="rw=@192.168.1.0/24" pool/music
+zfs set sharenfs="rw=@192.168.1.0/24" pool/save
+zfs set sharenfs="rw=@192.168.1.0/24" pool/tmp
+zfs set sharenfs="rw=@192.168.1.0/24" pool/tv
+
+# show
+exportfs -v
+showmount -e lord
+zfs get sharenfs
+
