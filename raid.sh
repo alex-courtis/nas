@@ -48,15 +48,22 @@ echo "dev.raid.speed_limit_max = 600000" >> /etc/sysctl.d/raid.conf
 
 # wait for build
 
-echo "MAILADDR none@example.com" >> /etc/mdadm.conf
+
+#
+# notifications
+#
+
+echo "MAILADDR alex@courtis.org" >> /etc/mdadm.conf
 mdadm --detail --scan >> /etc/mdadm.conf
 
-mdadm --assemble --scan
+mdadm --monitor --oneshot --test /dev/md0
 
 
 #
 # filesystem
 #
+
+wipefs --all /dev/md0
 
 # hardware block size, 4K
 blockdev --getbsz /dev/sda
