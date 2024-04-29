@@ -2,7 +2,8 @@
 Description=raid-scrub
 
 [Timer]
-OnCalendar=Sat 08:00
+OnCalendar=Sat 02:00
+# systemd-analyze --iterations 12 calendar "*-*-27 02:00"
 
 [Install]
 WantedBy=timers.target

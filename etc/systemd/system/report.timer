@@ -4,6 +4,7 @@ Description=report
 [Timer]
 OnBootSec=1min
 OnCalendar=Mon 08:00
+# systemd-analyze --iterations 5 calendar "*-*-01 08:00"
 
 [Install]
 WantedBy=timers.target
