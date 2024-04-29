@@ -13,4 +13,4 @@ groupadd -g 1200 plex ; useradd -M -s /sbin/nologin -d / -u 1200 -g 1200 plex
 groupadd -g 1201 sabnzbd ; useradd -M -s /sbin/nologin -d / -u 1201 -g 1201 sabnzbd
 groupadd -g 1203 sickchill ; useradd -M -s /sbin/nologin -d / -u 1203 -g 1203 sickchill
 
-usermod -a -G misc,music,download,tv,movie,tmp,save,archive ${USER}
+usermod -a -G misc,music,download,tv,movie,tmp,save,archive alex

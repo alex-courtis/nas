@@ -35,4 +35,5 @@ check filesystem sabnzbd with path /srv/sabnzbd
 check filesystem sickrage with path /srv/sickrage
 	if space usage >= 50% then alert
 
-# todo nfs
+check filesystem sickrage with path /srv/nfs
+	if space usage >= 90% then alert

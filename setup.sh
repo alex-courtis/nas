@@ -13,8 +13,14 @@ systemctl enable monit
 systemctl start monit
 
 
+#
 # TODO
+#
+
 # raid maintenance
+# echo check > /sys/block/md0/md/sync_action
+# cat /sys/block/md0/md/mismatch_cnt
+
 # disk maintenance
-# 7 day systemd heartbeat timer
-printf "from: lord <alex@courtis.org>\nsubject: %s\n" "$(uptime -p)" | sendmail alex@courtis.org
+
+# docker update mail

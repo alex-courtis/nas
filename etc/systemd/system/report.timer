@@ -1,0 +1,9 @@
+[Unit]
+Description=report
+
+[Timer]
+OnBootSec=1min
+OnCalendar=Mon 08:00
+
+[Install]
+WantedBy=timers.target
