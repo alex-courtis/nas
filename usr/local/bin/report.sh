@@ -2,8 +2,6 @@
 
 # -D run in foreground to prevent systemd from killing it
 
-cat /proc/mdstat
-
 cat << EOM | sendmail -D -t
 to: alex@courtis.org
 from: lord <alex@courtis.org>

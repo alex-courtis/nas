@@ -1,0 +1,6 @@
+[Unit]
+Description=report
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/raid-scrub.sh
