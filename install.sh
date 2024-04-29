@@ -9,6 +9,8 @@ cp -v --preserve=mode etc/systemd/system/* /etc/systemd/system
 
 cp -v --preserve=mode etc/mdadm.conf /etc
 
+cp -v --preserve=mode etc/smartd.conf /etc
+
 echo "---skipping etc/monitrc---"
 
 # TODO remove
