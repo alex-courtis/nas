@@ -38,6 +38,5 @@ EOF
     docker system prune -f
 else
 
-    # nothingtodohere
     echo "no update available"
 fi

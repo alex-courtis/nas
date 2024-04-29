@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# TODO parameterise this, if conditional update works
+# TODO mail on update
 
 # check for update
 docker pull linuxserver/plex | grep "Downloaded" >/dev/null
@@ -34,6 +34,5 @@ if [ $? -eq 0 ]; then
     docker system prune -f
 else
 
-    # nothingtodohere
     echo "no update available"
 fi
