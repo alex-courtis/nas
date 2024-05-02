@@ -18,7 +18,7 @@ $(df -h / /boot /tmp)
 
 $(df -h /srv/nfs | grep -v "^Filesystem")
 
-$(df -h /srv/plex /srv/sabnzbd /srv/sickrage | grep -v "^Filesystem")
+$(df -h /srv/plex /srv/sabnzbd /srv/sickchill | grep -v "^Filesystem")
 -
 EOM
 

@@ -13,5 +13,3 @@ cp -v --preserve=mode etc/smartd.conf /etc
 
 echo "---skipping etc/monitrc---"
 
-# TODO remove
-rm -v /etc/systemd/system/docker*

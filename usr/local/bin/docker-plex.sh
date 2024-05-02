@@ -19,11 +19,11 @@ if [ $? -eq 0 ]; then
         -e VERSION=docker \
         -e PUID=$(id -u plex) -e PGID=$(id -g plex) \
         -e TZ=Australia/Sydney \
-        -v /opt/plex/config:/config \
-        -v /opt/plex/transcode:/transcode \
+        -v /srv/plex/config:/config \
+        -v /srv/plex/transcode:/transcode \
         -v /tv:/data/tv \
-        -v /movie:/data/movie \
-        -v /music:/data/music \
+        -v /srv/nfs/movie:/data/movie \
+        -v /srv/nfs/music:/data/music \
         --restart unless-stopped \
         linuxserver/plex
 
