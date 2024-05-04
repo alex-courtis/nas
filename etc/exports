@@ -1,0 +1,3 @@
+# root itself is not browseable or mountable
+# mount subdirectories directly e.g. lord:tv
+/srv/nfs        192.168.1.0/24(rw,fsid=root,no_subtree_check)
