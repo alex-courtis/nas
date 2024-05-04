@@ -1,10 +1,20 @@
 #!/bin/sh
 
-# TODO mail on update
+ver_cur="$(docker image inspect linuxserver/plex | jq -r '.[0].Config.Labels.build_version')"
 
-# check for update
-docker pull linuxserver/plex | grep "Downloaded" >/dev/null
-if [ $? -eq 0 ]; then
+docker pull linuxserver/plex
+ver_new="$(docker image inspect linuxserver/plex | jq -r '.[0].Config.Labels.build_version')"
+
+if [ "${ver_cur}" != "${ver_new}" ]; then
+
+	cat << EOM | sendmail -D -t
+to: alex@courtis.org
+from: lord <alex@courtis.org>
+subject: upgraded plex
+
+CUR ${ver_cur}
+NEW ${ver_new} 
+EOM
 
     # stop existing
     docker stop plex

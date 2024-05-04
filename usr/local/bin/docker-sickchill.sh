@@ -1,8 +1,20 @@
 #!/bin/sh
 
-# check for update
-docker pull linuxserver/sickchill | grep "Downloaded" >/dev/null
-if [ $? -eq 0 ]; then
+ver_cur="$(docker image inspect linuxserver/sickchill | jq -r '.[0].Config.Labels.build_version')"
+
+docker pull linuxserver/sickchill
+ver_new="$(docker image inspect linuxserver/sickchill | jq -r '.[0].Config.Labels.build_version')"
+
+if [ "${ver_cur}" != "${ver_new}" ]; then
+
+	cat << EOM | sendmail -D -t
+to: alex@courtis.org
+from: lord <alex@courtis.org>
+subject: upgraded sickchill
+
+CUR ${ver_cur}
+NEW ${ver_new} 
+EOM
 
     # stop existing
     docker stop sickchill

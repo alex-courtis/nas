@@ -1,8 +1,20 @@
 #!/bin/sh
 
-# check for update
-docker pull linuxserver/sabnzbd | grep "Downloaded" >/dev/null
-if [ $? -eq 0 ]; then
+ver_cur="$(docker image inspect linuxserver/sabnzbd | jq -r '.[0].Config.Labels.build_version')"
+
+docker pull linuxserver/sabnzbd
+ver_new="$(docker image inspect linuxserver/sabnzbd | jq -r '.[0].Config.Labels.build_version')"
+
+if [ "${ver_cur}" != "${ver_new}" ]; then
+
+	cat << EOM | sendmail -D -t
+to: alex@courtis.org
+from: lord <alex@courtis.org>
+subject: upgraded sabnzbd
+
+CUR ${ver_cur}
+NEW ${ver_new} 
+EOM
 
     # add the sabnzbd process owner "abc" to the host's group "download"
     cat << EOF > /srv/sabnzbd/custom-cont-init.d/15-addgroups
