@@ -11,9 +11,13 @@ if [ "${ver_cur}" != "${ver_new}" ]; then
 to: alex@courtis.org
 from: lord <alex@courtis.org>
 subject: upgraded sabnzbd
+MIME-Version: 1.0
+Content-Type: text/html
 
-CUR ${ver_cur}
-NEW ${ver_new} 
+<pre>
+CUR:  ${ver_cur}
+NEW:  ${ver_new} 
+</pre>
 EOM
 
     # add the sabnzbd process owner "abc" to the host's group "download"
