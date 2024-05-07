@@ -31,7 +31,7 @@ EOM
         -e TZ=Australia/Sydney \
         -v /srv/plex/config:/config \
         -v /srv/plex/transcode:/transcode \
-        -v /tv:/data/tv \
+        -v /srv/nfs/tv:/data/tv \
         -v /srv/nfs/movie:/data/movie \
         -v /srv/nfs/music:/data/music \
         --restart unless-stopped \
