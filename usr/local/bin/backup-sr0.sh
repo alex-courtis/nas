@@ -4,9 +4,32 @@
 
 set -e
 
-VOL_ID="LORD_$(date +%Y%m%d_%H%M%S)"
+if [ $# -lt 2 ]; then
+	printf "usage: %s <vol prefix> dirs\n" "${0}"
+	printf "e.g. LORD /srv/nfs/misc /srv/nfs/music /srv/nfs/save\n"
+	exit 1
+fi
+
+VOL_ID="${1}_$(date +%Y%m%d_%H%M%S)"
+
+shift
 
 ISO="/srv/nfs/tmp/${VOL_ID}.iso"
+
+du -shc "${@}"
+echo
+
+PATHSPECS=""
+for d in "${@}"; do
+	PATHSPECS="${PATHSPECS}/$(basename "${d}")=${d} "
+done
+
+printf "pathspecs: %s\n\n" "${PATHSPECS}"
+
+printf "make iso %s ? " "${ISO}" ; read -r yn
+if [ "${yn}" != "y" ]; then
+	exit 1
+fi
 
 mkisofs \
 	-V "${VOL_ID}" \
@@ -14,9 +37,7 @@ mkisofs \
 	-r \
 	-graft-points \
 	-o "${ISO}" \
-	/misc=/srv/nfs/misc \
-	/music=/srv/nfs/music \
-	/save=/srv/nfs/save
+	${PATHSPECS}
 
 printf "burn %s ? " "${ISO}" ; read -r yn
 if [ "${yn}" != "y" ]; then
