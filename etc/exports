@@ -1,3 +1,4 @@
-# root itself is not browseable or mountable
-# mount subdirectories directly e.g. lord:tv
+# nfs3 mounts via lord:/srv/nfs
+# nfs4 mounts via lord:/
+# Individual mount points are not specified as autofs is not good at nfs4, see dotfiles comments
 /srv/nfs        10.0.0.0/8(rw,fsid=root,no_subtree_check)
