@@ -5,7 +5,7 @@
 cat << EOM | sendmail -D -t
 to: alex@courtis.org
 from: lord <alex@courtis.org>
-subject: $(uptime -p)
+subject: lord $(uptime -p)
 MIME-Version: 1.0
 Content-Type: text/html
 
@@ -15,7 +15,7 @@ Content-Type: text/html
 /sys/block/md0/md/last_sync_action $(cat /sys/block/md0/md/last_sync_action)
 /sys/block/md0/md/mismatch_cnt     $(cat /sys/block/md0/md/mismatch_cnt)
 -
-$(cat /proc/mdstat)
+$(cat /proc/mdstat | sed -E 's/[<>]//g')
 -
 $(df -h / /boot /tmp)
 
