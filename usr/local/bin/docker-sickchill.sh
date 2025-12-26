@@ -8,16 +8,10 @@ ver_new="$(docker image inspect linuxserver/sickchill | jq -r '.[0].Config.Label
 if [ "${ver_cur}" != "${ver_new}" ]; then
 
 	cat << EOM | sendmail -D -t
-to: alex@courtis.org
-from: lord <alex@courtis.org>
-subject: upgraded sickchill
-MIME-Version: 1.0
-Content-Type: text/html
-
-<pre>
+$(lord-email-header.sh "upgraded sickchill")
 CUR:  ${ver_cur}
 NEW:  ${ver_new} 
-</pre>
+$(lord-email-footer.sh)
 EOM
 
     # stop existing

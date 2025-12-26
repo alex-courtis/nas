@@ -8,3 +8,4 @@ sysctl --system
 
 echo check > /sys/block/md0/md/sync_action
 
+raid-scrub-monitor.sh

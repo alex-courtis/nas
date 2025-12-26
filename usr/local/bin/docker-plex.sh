@@ -8,16 +8,10 @@ ver_new="$(docker image inspect linuxserver/plex | jq -r '.[0].Config.Labels.bui
 if [ "${ver_cur}" != "${ver_new}" ]; then
 
 	cat << EOM | sendmail -D -t
-to: alex@courtis.org
-from: lord <alex@courtis.org>
-subject: upgraded plex
-MIME-Version: 1.0
-Content-Type: text/html
-
-<pre>
+$(lord-email-header.sh "upgraded plex")
 CUR:  ${ver_cur}
 NEW:  ${ver_new} 
-</pre>
+$(lord-email-footer.sh)
 EOM
 
     # stop existing

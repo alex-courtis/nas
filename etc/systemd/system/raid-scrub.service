@@ -1,5 +1,5 @@
 [Unit]
-Description=report
+Description=raid-scrub
 
 [Service]
 Type=oneshot
