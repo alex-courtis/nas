@@ -1,0 +1,8 @@
+[Unit]
+Description=raid-speed-limits
+
+[Timer]
+OnBootSec=1min
+
+[Install]
+WantedBy=timers.target
