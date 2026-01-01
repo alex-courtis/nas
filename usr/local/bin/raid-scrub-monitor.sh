@@ -15,5 +15,15 @@ ${STATUS}
 $(lord-email-footer.sh)
 EOM
 
+elif [ -f "/tmp/raid-scrub.started" ]; then
+
+	cat << EOM | sendmail -D -t
+$(lord-email-header.sh "raid-scrub complete")
+${STATUS}
+$(lord-email-footer.sh)
+EOM
+
+rm /tmp/raid-scrub.started
+
 fi
 
