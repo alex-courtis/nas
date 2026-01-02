@@ -2,7 +2,7 @@
 Description=raid-speed-limits
 
 [Timer]
-OnBootSec=1min
+OnBootSec=20sec
 
 [Install]
 WantedBy=timers.target

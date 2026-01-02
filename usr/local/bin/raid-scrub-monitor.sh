@@ -7,7 +7,7 @@ if [ "$ACTION" != "idle" ]; then
 	STATUS=$(raid-status.sh)
 	echo "${STATUS}"
 
-	PROGRESS=$(cat /proc/mdstat | grep "check =" | sed -E 's/^ *//g')
+	PROGRESS=$(cat /proc/mdstat | grep -E "^ +\[.* = " | sed -E 's/^ *//g')
 
 	cat << EOM | sendmail -D -t
 $(lord-email-header.sh "${PROGRESS}")

@@ -2,7 +2,7 @@
 Description=report
 
 [Timer]
-OnBootSec=15sec
+OnBootSec=25sec
 OnCalendar=Mon *-*-* 08:00:00
 # systemd-analyze --iterations 5 calendar "Mon *-*-* 08:00:00"
 
