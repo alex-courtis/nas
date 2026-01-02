@@ -1,3 +1,6 @@
+# Add delay to /usr/lib/systemd/system/monit.service so that we get startup messages
+# ExecStartPre=/bin/sleep 60
+
 # cycle seconds
 set daemon 60
 

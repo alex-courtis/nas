@@ -3,7 +3,7 @@ Description=raid-scrub-monitor
 
 [Timer]
 OnBootSec=1min
-OnUnitActiveSec=1hour
+OnCalendar=*-*-* *:00,15,30,45:00
 
 [Install]
 WantedBy=timers.target

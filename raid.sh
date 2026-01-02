@@ -40,11 +40,7 @@ mdadm --detail /dev/md0
 
 cat /proc/mdstat # no need to wait for spare
 
-sysctl -w dev.raid.speed_limit_min=600000
-sysctl -w dev.raid.speed_limit_max=600000
-
-echo "dev.raid.speed_limit_min = 600000" > /etc/sysctl.d/raid.conf
-echo "dev.raid.speed_limit_max = 600000" >> /etc/sysctl.d/raid.conf
+raid-speed-limits.sh
 
 # wait for build
 

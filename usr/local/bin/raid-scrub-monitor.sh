@@ -17,6 +17,9 @@ EOM
 
 elif [ -f "/tmp/raid-scrub.started" ]; then
 
+	STATUS=$(raid-status.sh)
+	echo "${STATUS}"
+
 	cat << EOM | sendmail -D -t
 $(lord-email-header.sh "raid-scrub complete")
 ${STATUS}
