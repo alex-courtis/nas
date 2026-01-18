@@ -82,3 +82,4 @@ genfstab -U /srv/nfs >> /etc/fstab
 # remove swap, set last fsck to 2, change point to /srv/nfs
 vi /etc/fstab
 
+# vim:ft=sh
