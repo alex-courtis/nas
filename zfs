@@ -74,7 +74,8 @@ systemctl enable zfs-trim@pool.timer
 systemctl enable zfs-scrub@pool.timer
 
 # scrub now
-systemctl start zfs-scrub@pool.timer
+systemctl start zfs-scrub@pool.service
+zpool status -t pool
 
 #
 # enable nfs
@@ -84,7 +85,8 @@ systemctl enable zfs-share.service
 systemctl start nfs-server.service
 systemctl start zfs-share.service
 
-# nfs4 root
+# nfs4 mounts at /
+# nfs3 mounts at /srv/nfs
 zfs set sharenfs="rw=@10.0.0.0/8,fsid=root" pool
 
 # show

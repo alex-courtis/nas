@@ -7,9 +7,7 @@ echo "---skipping etc/dma/auth.conf---"
 
 cp -v --preserve=mode etc/systemd/system/* /etc/systemd/system
 
-cp -v --preserve=mode etc/exports /etc
-
-cp -v --preserve=mode etc/mdadm.conf /etc
+cp -v --preserve=mode etc/zfs/zed.d/zed.rc /etc/zfs/zed.d
 
 echo "---skipping etc/monitrc---"
 
