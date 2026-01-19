@@ -1,5 +1,5 @@
 [Unit]
-Description=raid-scrub
+Description=zfs scrub on %i
 
 [Timer]
 OnCalendar=Sat *-*-01..07 01:55:00

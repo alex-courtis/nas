@@ -6,12 +6,13 @@
 ls /dev/disk/by-id/ | grep "ata-"
 
 # show block size
+# most SSDs show 512 however
+#  AW states that it's unreliable
+#  zfs doc agrees
+# so use ashift=12
 blockdev --getpbsz /dev/sda
 
-# create
-# vdevs
-# 512 byte block -> 4k sector
-# name pool
+# create pool
 zpool create \
 	-f \
 	-m /srv/nfs \
@@ -29,64 +30,88 @@ zpool history
 # verify pool status
 zpool status -v
 
+# datasets don't add value
+
+# no need to set the cache file, default is below
+#zpool set cachefile=/etc/zfs/zpool.cache pool
+
+# AW advises against zfs-mount due to load order issues, use zfs-mount-generator
+mkdir /etc/zfs/zfs-list.cache
+
 # enable services
 systemctl enable zfs.target
-systemctl start zfs.target
 systemctl enable zfs-zed.service
 systemctl start zfs-zed.service
-systemctl enable zfs-import.target
-systemctl start zfs-import.target
-systemctl enable zfs-import-cache.service
-systemctl start zfs-import-cache.service
 
-# AW advises against zfs-mount due to load order issues
-# Use zfs-mount-generator
-mkdir /etc/zfs/zfs-list.cache
+# create the file for zedlet to write the FS list
 touch /etc/zfs/zfs-list.cache/pool
 
-# generate the cache once
-systemctl start zfs-import-cache.service
+# nudge it into action
+zfs set canmount=off pool
+zfs set canmount=on pool
+cat /etc/zfs/zfs-list.cache/pool
 
-#
-# data sets
-#
+# do the first import
+zfs mount -a
 
-zfs create pool/archive
-zfs create pool/download
-zfs create pool/misc
-zfs create pool/movie
-zfs create pool/music
-zfs create pool/save
-zfs create pool/tmp
-zfs create pool/tv
+# enable auto mounts
+systemctl enable zfs-import.target
+systemctl enable zfs-import-cache.service
 
-zfs set quota=1T pool/download
-zfs set quota=512G pool/tmp
+# reboot to ensure everything mounts automatically
+
+# enable periodic trimming
+zpool set autotrim=on pool
+
+# trim now
+zpool trim pool
+zpool status -t pool
+
+# also enable trim timer, as occasional trims are recommended by AW
+systemctl enable zfs-trim@pool.timer
+
+# monthly scrubbing
+systemctl enable zfs-scrub@pool.timer
+
+# scrub now
+systemctl start zfs-scrub@pool.timer
 
 #
 # enable nfs
 #
-systemctl enable nfsv4-server.service
+systemctl enable nfs-server.service
 systemctl enable zfs-share.service
-systemctl start nfsv4-server.service
+systemctl start nfs-server.service
 systemctl start zfs-share.service
 
-# explicit nfs for each, can't inherit fsid=root
-zfs set sharenfs="rw=@192.168.1.0/24,fsid=root" pool
-zfs set sharenfs="rw=@192.168.1.0/24" pool/archive
-zfs set sharenfs="rw=@192.168.1.0/24" pool/download
-zfs set sharenfs="rw=@192.168.1.0/24" pool/misc
-zfs set sharenfs="rw=@192.168.1.0/24" pool/movie
-zfs set sharenfs="rw=@192.168.1.0/24" pool/music
-zfs set sharenfs="rw=@192.168.1.0/24" pool/save
-zfs set sharenfs="rw=@192.168.1.0/24" pool/tmp
-zfs set sharenfs="rw=@192.168.1.0/24" pool/tv
+# nfs4 root
+zfs set sharenfs="rw=@10.0.0.0/8,fsid=root" pool
 
 # show
 exportfs -v
 showmount -e lord
 zfs get sharenfs
 
+
+
+
+
+# disable/stop all services
+systemctl disable nfs-server.service
+systemctl stop nfsdcld.service
+systemctl stop nfs-server.service
+
+systemctl disable zfs.target
+systemctl disable zfs-zed.service
+systemctl disable zfs-import.target
+systemctl disable zfs-import-cache.service
+systemctl disable zfs-share.service
+
+systemctl stop zfs.target
+systemctl stop zfs-zed.service
+systemctl stop zfs-import.target
+systemctl stop zfs-import-cache.service
+systemctl stop zfs-share.service
 
 # vim:ft=sh
 

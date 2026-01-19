@@ -1,6 +1,0 @@
-[Unit]
-Description=raid-scrub
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/raid-scrub.sh

@@ -1,6 +1,0 @@
-[Unit]
-Description=raid-speed-limits
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/raid-speed-limits.sh

@@ -15,3 +15,4 @@ echo "---skipping etc/monitrc---"
 
 cp -v --preserve=mode etc/smartd.conf /etc
 
+systemctl daemon-reload
