@@ -3,7 +3,7 @@
 #
 
 # disk ids
-ls /dev/disk/by-id/ | grep "ata-"
+ls /dev/disk/by-id/ | grep -E "ata-Sam|nvme-CT"
 
 # show block size
 # most SSDs show 512 however
@@ -23,6 +23,12 @@ zpool create \
 	ata-Samsung_SSD_870_QVO_8TB_S5SSNF0WA05327T \
 	ata-Samsung_SSD_870_QVO_8TB_S5SSNF0WA05350J \
 	ata-Samsung_SSD_870_QVO_8TB_S5SSNF0WA05377P
+zpool create \
+	-f \
+	-m /srv/fast \
+	-o ashift=12 \
+	fast \
+	nvme-CT1000T700SSD3_2321E6DA3BF8
 
 # show history
 zpool history
@@ -45,11 +51,15 @@ systemctl start zfs-zed.service
 
 # create the file for zedlet to write the FS list
 touch /etc/zfs/zfs-list.cache/pool
+touch /etc/zfs/zfs-list.cache/fast
 
 # nudge it into action
 zfs set canmount=off pool
 zfs set canmount=on pool
 cat /etc/zfs/zfs-list.cache/pool
+zfs set canmount=off fast
+zfs set canmount=on fast
+cat /etc/zfs/zfs-list.cache/fast
 
 # do the first import
 zfs mount -a
@@ -62,19 +72,35 @@ systemctl enable zfs-import-cache.service
 
 # enable periodic trimming
 zpool set autotrim=on pool
+zpool set autotrim=on fast
 
 # trim now
 zpool trim pool
 zpool status -t pool
+zpool trim fast
+zpool status -t fast
+
+# datasets to mount under pool nfs4 fsid=root
+zfs create fast/doc
+zfs set mountpoint=/srv/nfs/doc fast/doc
+zfs create fast/download
+zfs set mountpoint=/srv/nfs/download fast/download
+zfs create fast/prn
+zfs set mountpoint=/srv/nfs/prn fast/prn
+zfs create fast/tmp
+zfs set mountpoint=/srv/nfs/tmp fast/tmp
 
 # also enable trim timer, as occasional trims are recommended by AW
 systemctl enable zfs-trim@pool.timer
+systemctl enable zfs-trim@fast.timer
 
 # monthly scrubbing
 systemctl enable zfs-scrub@pool.timer
+systemctl enable zfs-scrub@fast.timer
 
 # scrub now
 systemctl start zfs-scrub@pool.service
+systemctl start zfs-scrub@fast.service
 zpool status -t pool
 
 #
@@ -85,9 +111,10 @@ systemctl enable zfs-share.service
 systemctl start nfs-server.service
 systemctl start zfs-share.service
 
-# nfs4 mounts at /
+# nfs4 root mounts at /
+# nfs4 directories and crossmnt dataset mounts at /<name>
 # nfs3 mounts at /srv/nfs
-zfs set sharenfs="rw=@10.0.0.0/8,fsid=root" pool
+zfs set sharenfs="rw=@10.0.0.0/8,crossmnt,fsid=root" pool
 
 # show
 exportfs -v

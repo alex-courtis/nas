@@ -3,7 +3,7 @@
 cat << EOM | sendmail -D -t
 $(lord-email-header.sh "$(uptime -p)")
 -
-$(zpool status -t pool)
+$(zpool status -t)
 -
 $(df -h / /boot /tmp)
 
