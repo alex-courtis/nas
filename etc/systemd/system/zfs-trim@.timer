@@ -1,9 +1,0 @@
-[Unit]
-Description=zfs trim on %i
-
-[Timer]
-OnCalendar=Sat *-*-08..15 01:55:00
-#systemd-analyze --iterations 12 calendar "Sat *-*-08..15 01:55:00"
-
-[Install]
-WantedBy=timers.target

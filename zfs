@@ -91,12 +91,12 @@ zfs create fast/tmp
 zfs set mountpoint=/srv/nfs/tmp fast/tmp
 
 # also enable trim timer, as occasional trims are recommended by AW
-systemctl enable zfs-trim@pool.timer
-systemctl enable zfs-trim@fast.timer
+systemctl enable zfs-trim-weekly@pool.timer
+systemctl enable zfs-trim-weekly@fast.timer
 
-# monthly scrubbing
-systemctl enable zfs-scrub@pool.timer
-systemctl enable zfs-scrub@fast.timer
+# periodic scrubbing
+systemctl enable zfs-scrub-weekly@pool.timer
+systemctl enable zfs-scrub-weekly@fast.timer
 
 # scrub now
 systemctl start zfs-scrub@pool.service

@@ -1,9 +1,0 @@
-[Unit]
-Description=zfs scrub on %i
-
-[Timer]
-OnCalendar=Sat *-*-01..07 01:55:00
-#systemd-analyze --iterations 12 calendar "Sat *-*-01..07 01:55:00"
-
-[Install]
-WantedBy=timers.target
