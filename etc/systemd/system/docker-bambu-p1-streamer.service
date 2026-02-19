@@ -1,0 +1,11 @@
+[Unit]
+Description=BambuP1Streamer
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=docker start bambu_p1_streamer
+ExecStop=docker stop bambu_p1_streamer
+
+[Install]
+WantedBy=multi-user.target
