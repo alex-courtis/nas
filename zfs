@@ -1,4 +1,21 @@
 #
+# disk setup
+#
+
+Samsung has some problems with NCQ, which results in zpool scrub failures. See https://blog.cavelab.dev/2021/02/zfs-ssd-pool-problems/
+
+Force disable it via cmdline:
+
+```
+libata.force=1.00:noncq,3.00:noncq,5.00:noncq,7.00:noncq
+```
+
+Find the ataX.00 identifiers via:
+```sh
+journalctl -b -2 | grep NCQ
+```
+
+#
 # creation
 #
 
